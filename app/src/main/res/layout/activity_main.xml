@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D079E6"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/qview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D079E6">
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:text=" Quote of the Day"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="40dp"
+            android:textStyle="bold|normal"
+            />
+
+        <TextView
+            android:id="@+id/quote_view"
+            android:layout_below="@id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="7dp"
+            android:text="@+id/quote_txt"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/refresh_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_above="@+id/img_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_corners"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:onClick="refresh"
+        android:padding="15dp"
+        android:text="Refresh Quote"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:textColor="#000000" />
+
+    <LinearLayout
+        android:id="@+id/img_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="30dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_corners"
+        android:padding="15dp"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:onClick="share"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="14dp"
+            android:text="Share On WhatsApp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            android:onClick="share"
+            android:src="@drawable/whatsapp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
