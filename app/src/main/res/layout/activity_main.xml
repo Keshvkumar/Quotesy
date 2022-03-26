@@ -36,7 +36,7 @@
         android:text="Quote of the Day!"
         android:textSize="25dp"
         android:textColor="#503030"
-        android:fontFamily="@font/nunito_semibold"
+        android:fontFamily="@font/nunito_regular"
         android:layout_below="@id/text_date"
         android:layout_marginStart="12dp"
         android:layout_marginBottom="12dp"
@@ -114,7 +114,7 @@
             android:text="See it in"
             android:textSize="25dp"
             android:textColor="#503030"
-            android:fontFamily="@font/nunito_semibold"
+            android:fontFamily="@font/nunito_regular"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="12dp"
             />
@@ -203,5 +203,27 @@
         android:textAllCaps="false"
         android:textSize="20dp"
         android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/rating_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/refresh_btn"
+        android:text="Track your mood.\n How are you feeling Today?"
+        android:textSize="18dp"
+        android:textColor="#503030"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/nunito_regular"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="12dp"
+        />
+    <com.hsalf.smileyrating.SmileyRating
+        android:id="@+id/smile_rating"
+        android:layout_below="@id/rating_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        />
 
 </RelativeLayout>

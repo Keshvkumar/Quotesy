@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hsalf.smileyrating.SmileyRating;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView btnHit;
     TextView txtJson;
+    SmileyRating smileyRating;
     ProgressDialog pd;
 
     String shareQuote="Be Happy!";
@@ -38,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnHit = findViewById(R.id.refresh_btn);
         txtJson = findViewById(R.id.quote_view);
+        smileyRating = findViewById(R.id.smile_rating);
 
+        smileyRating.setRating(-1,true);
         txtJson.setText("Be Happy!");
         btnHit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +52,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        smileyRating.setSmileySelectedListener(new SmileyRating.OnSmileySelectedListener() {
+            @Override
+            public void onSmileySelected(SmileyRating.Type type) {
+                // You can compare it with rating Type
+                if (SmileyRating.Type.GREAT == type) {
+                    Toast.makeText(getApplicationContext(), "Tadaa! Feeling Great ...", Toast.LENGTH_LONG).show();
+                }
+                // You can get the user rating too
+                // rating will between 1 to 5
+                int rating = type.getRating();
+
+                switch(rating)
+                {
+                    case 1:
+                        smileyRating.setRating(1,true);
+                        Toast.makeText(getApplicationContext(), "Ouch! Feeling Terrible ...", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        smileyRating.setRating(2,true);
+                        Toast.makeText(getApplicationContext(), "Feeling Bad ...", Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        smileyRating.setRating(3,true);
+                        Toast.makeText(getApplicationContext(), "Just! Feeling Okay ...", Toast.LENGTH_LONG).show();
+                        break;
+                    case 4:
+                        smileyRating.setRating(4,true);
+                        Toast.makeText(getApplicationContext(), "Feeling Good ...", Toast.LENGTH_LONG).show();
+                        break;
+                    case 5:
+                        smileyRating.setRating(5,true);
+                        Toast.makeText(getApplicationContext(), "Taadaa! Feeling Great ...", Toast.LENGTH_LONG).show();
+                        break;
+                    case -1:
+                        smileyRating.setRating(-1,true);
+                        Toast.makeText(getApplicationContext(), "Atleast select minimum rating.", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
     }
     private void getJSON(final String urlWebService) {
@@ -100,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 txtJson.setText(s);
                 shareQuote=s;
-                Toast.makeText(getApplicationContext(), "TADAA!\nfetched new quote ...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Tadaa!\nfetched new quote ...", Toast.LENGTH_SHORT).show();
             }
 
             //in this method we are fetching the json string
