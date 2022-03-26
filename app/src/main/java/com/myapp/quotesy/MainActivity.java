@@ -1,30 +1,19 @@
 package com.myapp.quotesy;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,12 +21,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     TextView btnHit;
@@ -50,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnHit = (TextView) findViewById(R.id.refresh_btn);
-        txtJson = (TextView) findViewById(R.id.quote_view);
+        btnHit = findViewById(R.id.refresh_btn);
+        txtJson = findViewById(R.id.quote_view);
 
         txtJson.setText("Be Happy!");
         btnHit.setOnClickListener(new View.OnClickListener() {
@@ -160,67 +146,7 @@ public class MainActivity extends AppCompatActivity {
         GetJSON getJSON = new GetJSON();
         getJSON.execute();
     }
-    public Bitmap takeScreenshot(View view) {
-        RelativeLayout iv = (RelativeLayout) findViewById(R.id.qview);
-        Bitmap bitmap = Bitmap.createBitmap(
-                iv.getChildAt(0).getWidth(),
-                iv.getChildAt(0).getHeight(),
-                Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(bitmap);
-        iv.getChildAt(0).draw(c);
 
-//        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),view.getHeight(), Bitmap.Config.ARGB_8888);
-//        Canvas canvas = new Canvas(bitmap);
-//        view.draw(canvas);
-        return bitmap;
-    }
-    private void shareIt(Bitmap bitmap) {
-//        Bitmap icon = bitmap;
-//        Intent share = new Intent(Intent.ACTION_SEND);
-//        share.setType("image/jpeg");
-//
-//        ContentValues values = new ContentValues();
-//        values.put(MediaStore.Images.Media.TITLE, "title");
-//        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-//        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                values);
-//
-//
-//        OutputStream outstream;
-//        try {
-//            outstream = getContentResolver().openOutputStream(uri);
-//            icon.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-//            outstream.close();
-//        } catch (Exception e) {
-//            System.err.println(e.toString());
-//        }
-//
-//        share.putExtra(Intent.EXTRA_STREAM, uri);
-//        startActivity(Intent.createChooser(share, "Share Image"));
-
-//        String path= MediaStore.Images.Media.insertImage(ctx.getContentResolver(), bitmap,"title", null);
-//        ContentValues values=new ContentValues();
-//        values.put(MediaStore.Images.Media.TITLE,"Title");
-//        values.put(MediaStore.Images.Media.DESCRIPTION,"From Camera");
-//        Uri path=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
-//        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//        shareIntent.setType("image/jpeg");
-//
-//        Uri uri = Uri.parse(String.valueOf(path));
-//        OutputStream outstream;
-//        try {
-//            outstream = getContentResolver().openOutputStream(uri);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-//            outstream.close();
-//        } catch (Exception e) {
-//            System.err.println(e.toString());
-//        }
-//
-//        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Quotes App");
-//        shareIntent.putExtra(Intent.EXTRA_TEXT, "Hey there!I have shared you a quote from Quotes App.");
-//        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-//        startActivity(Intent.createChooser(shareIntent, "Share new quote via"));
-    }
 
     private Context getContext() {
         return super.getApplicationContext();
@@ -228,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void share(View view)
     {
-//        Bitmap bitmap = takeScreenshot(view);
-//        shareIt(bitmap);
         PackageManager pm=getPackageManager();
         try
         {
