@@ -38,18 +38,20 @@ public class MainActivity extends AppCompatActivity {
 
         btnHit = findViewById(R.id.refresh_btn);
         txtJson = findViewById(R.id.quote_view);
+        String apiCall = "https://api.quotable.io//*api key*/";
 
         txtJson.setText("Be Happy!");
         btnHit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getJSON("https://api.quotable.io/random?tags=famous-quotes");
+                getJSON(apiCall);
             }
         });
 
 
     }
-    private void getJSON(final String urlWebService) {
+    private void getJSON(final String urlWebService) 
+    {
         /*
          * As fetching the json string is a network operation
          * And we cannot perform a network operation in main thread
@@ -59,14 +61,16 @@ public class MainActivity extends AppCompatActivity {
          * Void -> Nothing at progress update as well
          * String -> After completion it should return a string and it will be the json string
          * */
-        class GetJSON extends AsyncTask<Void, Void, String> {
+        class GetJSON extends AsyncTask<Void, Void, String> 
+        {
 
             //this method will be called before execution
             //you can display a progress bar or something
             //so that user can understand that he should wait
             //as network operation may take some time
             @Override
-            protected void onPreExecute() {
+            protected void onPreExecute() 
+            {
                 super.onPreExecute();
 
 
@@ -79,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
             //this method will be called after execution
             //so here we are displaying a toast with the json string
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(String s) 
+            {
                 super.onPostExecute(s);
                 if (pd.isShowing()){
                     pd.dismiss();
@@ -105,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
             //in this method we are fetching the json string
             @Override
-            protected String doInBackground(Void... voids) {
+            protected String doInBackground(Void... voids) 
+            {
 
 
 
@@ -177,7 +183,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private class JsonTask extends AsyncTask<String, String, String> {
+    private class JsonTask extends AsyncTask<String, String, String> 
+    {
 
         protected void onPreExecute() {
             super.onPreExecute();
