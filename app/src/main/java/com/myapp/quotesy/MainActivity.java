@@ -42,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
         btnHit = findViewById(R.id.refresh_btn);
         txtJson = findViewById(R.id.quote_view);
         smileyRating = findViewById(R.id.smile_rating);
+        String apiCall = new String("https://api-url-with-key/");
 
         smileyRating.setRating(-1,true);
         txtJson.setText("Be Happy!");
         btnHit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getJSON("https://api.quotable.io/random?tags=famous-quotes");
+                getJSON(apiCall);
             }
         });
 
