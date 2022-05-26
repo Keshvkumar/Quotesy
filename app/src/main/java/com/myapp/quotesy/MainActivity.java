@@ -26,7 +26,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity 
+{
 
     TextView btnHit;
     TextView txtJson;
@@ -34,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog pd;
 
     String shareQuote="Be Happy!";
+    
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         smileyRating.setRating(-1,true);
         txtJson.setText("Be Happy!");
+        
         btnHit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,13 +59,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         smileyRating.setSmileySelectedListener(new SmileyRating.OnSmileySelectedListener() {
+        
             @Override
-            public void onSmileySelected(SmileyRating.Type type) {
-                // You can compare it with rating Type
-                if (SmileyRating.Type.GREAT == type) {
+            public void onSmileySelected(SmileyRating.Type type) 
+            {
+                // we can compare it with rating Type
+                if (SmileyRating.Type.GREAT == type) 
+                {
                     Toast.makeText(getApplicationContext(), "Tadaa! Feeling Great ...", Toast.LENGTH_LONG).show();
                 }
-                // You can get the user rating too
+                // we can get the user rating too
                 // rating will between 1 to 5
                 int rating = type.getRating();
 
@@ -97,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void getJSON(final String urlWebService) {
+    
+    private void getJSON(final String urlWebService) 
+    {
         /*
          * As fetching the json string is a network operation
          * And we cannot perform a network operation in main thread
@@ -107,14 +117,16 @@ public class MainActivity extends AppCompatActivity {
          * Void -> Nothing at progress update as well
          * String -> After completion it should return a string and it will be the json string
          * */
-        class GetJSON extends AsyncTask<Void, Void, String> {
+        class GetJSON extends AsyncTask<Void, Void, String> 
+        {
 
             //this method will be called before execution
-            //you can display a progress bar or something
+            //we can display a progress bar or something
             //so that user can understand that he should wait
             //as network operation may take some time
             @Override
-            protected void onPreExecute() {
+            protected void onPreExecute() 
+            {
                 super.onPreExecute();
 
 
@@ -127,23 +139,29 @@ public class MainActivity extends AppCompatActivity {
             //this method will be called after execution
             //so here we are displaying a toast with the json string
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(String s) 
+            {
                 super.onPostExecute(s);
-                if (pd.isShowing()){
+                if (pd.isShowing())
+                {
                     pd.dismiss();
                 }
 
 
                 JSONObject obj = null;
-                try {
+                try 
+                {
                     obj = new JSONObject(s);
-                } catch (JSONException e) {
+                } catch (JSONException e)
+                {
                     e.printStackTrace();
                 }
 
-                try {
+                try 
+                {
                     s = obj.getString("content");
-                } catch (JSONException e) {
+                } catch (JSONException e)
+                {
                     e.printStackTrace();
                 }
                 txtJson.setText(s);
@@ -153,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
 
             //in this method we are fetching the json string
             @Override
-            protected String doInBackground(Void... voids) {
+            protected String doInBackground(Void... voids) 
+            {
 
 
 
@@ -183,7 +202,9 @@ public class MainActivity extends AppCompatActivity {
 
                     //finally returning the read string
                     return sb.toString().trim();
-                } catch (Exception e) {
+                } 
+                catch (Exception e) 
+                {
                     return null;
                 }
 
@@ -196,7 +217,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private Context getContext() {
+    private Context getContext() 
+    {
         return super.getApplicationContext();
     }
 
@@ -265,15 +287,21 @@ public class MainActivity extends AppCompatActivity {
                 return buffer.toString();
 
 
-            } catch (MalformedURLException e) {
+            } 
+            catch (MalformedURLException e) 
+            {
                 e.printStackTrace();
-            } catch (IOException e) {
+            } 
+            catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                if (connection != null) {
+            } 
+            finally {
+                if (connection != null) 
+                {
                     connection.disconnect();
                 }
-                try {
+                try 
+                {
                     if (reader != null) {
                         reader.close();
                     }
